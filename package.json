@@ -4,7 +4,9 @@
   },
   "dependencies": {
     "express": "^4.18.1",
-    "express-handlebars": "^6.0.7"
+    "express-handlebars": "^6.0.7",
+    "discord.js": "^12.5.1",
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
