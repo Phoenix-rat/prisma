@@ -1,3 +1,4 @@
 node_modules/
 .devcontainer/
 config.json
+.github/
