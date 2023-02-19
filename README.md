@@ -1,4 +1,4 @@
-#TODO (Yapılacaklar Listesi)
+# TODO (Yapılacaklar Listesi)
 - About(Hakkımızda), Features(Özellikler), FAQ(S.S.S.) sayfalarını bitirmek.
 - Ana sayfayı bitirmek.
 - Yeni discord bağlantıları getirmek.
@@ -6,12 +6,12 @@
 - Yeni bir banner tasarlamak.
 - Yeni bir favicon tasarlamak.
 
-#Kurulum
+# Kurulum
 - Gerekli modülleri yüklemek için `npm install` komutunu çalıştırın.
 - `config.json` dosyasını düzenleyin.
 - `npm start` komutunu çalıştırın.
 
-#Kullanılan Teknolojiler
+# Kullanılan Teknolojiler
 - [Node.js](https://nodejs.org/en/)
 - [Express.js](https://expressjs.com/)
 - [Handlebars.js](https://handlebarsjs.com/)
@@ -22,7 +22,7 @@
 - [Chart.js](https://www.chartjs.org/)
 - [Moment.js](https://momentjs.com/)
 
-#Linkler
+# Linkler
 - [Discord](https://discord.gg/rQXQ4uCqdp)
 - [Github](https://github.com/phoenix-rat/prisma)
 - [Website](https://prisma.biz.tr)
