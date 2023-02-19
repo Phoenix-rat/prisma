@@ -80,6 +80,29 @@ app.get('/about', (req, res) => {
         title: 'About'
     });
 });
+
+app.get('/suggestions', (req, res) => {
+    res.render('suggestions', {
+        title: 'Suggestions'
+    });
+});
+
+app.post("/suggestions", async(req, res) => {
+    const ID = req.body.message;
+    const email = req.body.email;
+    const user = client.users.cache.get(config.userid);
+    if (ID) {
+        user.send(new MessageEmbed().setTitle("Site Suggestions System").setDescription(`
+        ⚪ **Email :** **${email}**
+        ⚪ **İp : ${req.ip}**
+
+        **Mesaj;**
+
+        \`\`\`${ID}\`\`\`
+        `).setColor("161616").setFooter(``)).catch(x => {})
+    };
+    res.redirect("/");
+});
 app.use((req, res) => { return res.redirect("/"); });
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
