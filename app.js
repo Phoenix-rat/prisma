@@ -74,12 +74,7 @@ app.post("/contact", async(req, res) => {
   };
   res.redirect("/");
 });
-app.get('/test', (req, res) => {
-    res.render('test', {
-        title: 'Test'
-        });
-    console.log(req.body)
-    });
+
 app.get('/about', (req, res) => {
     res.render('about', {
         title: 'About'
