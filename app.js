@@ -5,8 +5,9 @@ const { urlencoded, json } = require("body-parser");
 const { Client, MessageEmbed } = require("discord.js");
 const client = new Client({ fetchAllMembers: true });
 const moment = require("moment");
-const port = config.port
 const config = require("./config.json");
+const port = config.port
+
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
