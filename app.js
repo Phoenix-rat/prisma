@@ -20,11 +20,6 @@ app.get('/', (req, res) => {
         title: 'Home'
     });
 });
-app.get('/about', (req, res) => {
-    res.render('about', {
-        title: 'About'
-    });
-});
 app.get('/faq', (req, res) => {
     res.render('faq', {
         title: 'FAQ'
