@@ -20,15 +20,19 @@ app.get('/', (req, res) => {
         title: 'Home'
     });
 });
-app.get('/features', (req, res) => {
-    res.render('features', {
-        title: 'Features'
+app.get('/about', (req, res) => {
+    res.render('about', {
+        title: 'About'
     });
 });
-
 app.get('/faq', (req, res) => {
     res.render('faq', {
         title: 'FAQ'
+    });
+});
+app.get('/features', (req, res) => {
+    res.render('features', {
+        title: 'Features'
     });
 });
 
@@ -41,12 +45,14 @@ app.post("/contact", async(req, res) => {
   const ID = req.body.message;
   const email = req.body.email;
   let actionType = req.body.type;
+  let adres = req.body.adress2;
   const user = client.users.cache.get(config.userid);
   if (ID) {
       if (actionType === "ortakçalisma") {
           user.send(new MessageEmbed().setTitle("Site Contact System | Ortak Çalışma").setDescription(`
           ⚪ **Email :** **${email}**
           ⚪ **İp : ${req.ip}**
+          ⚪ **Adres : ${adres}**
 
           **Mesaj;**
 
@@ -57,6 +63,7 @@ app.post("/contact", async(req, res) => {
           user.send(new MessageEmbed().setTitle("Site Contact System | İş Birliği").setDescription(`
           ⚪ **Email :** **${email}**
           ⚪ **İp : ${req.ip}**
+          ⚪ **Adres : ${adres}**
 
           **Mesaj;**
 
@@ -67,6 +74,7 @@ app.post("/contact", async(req, res) => {
           user.send(new MessageEmbed().setTitle("Site Contact System | Acil Konu").setDescription(`
           ⚪ **Email :** **${email}**
           ⚪ **İp : ${req.ip}**
+          ⚪ **Adres : ${adres}**
 
           **Mesaj;**
           \`\`\`${ID}\`\`\`
@@ -74,12 +82,6 @@ app.post("/contact", async(req, res) => {
       };
   };
   res.redirect("/");
-});
-
-app.get('/about', (req, res) => {
-    res.render('about', {
-        title: 'About'
-    });
 });
 
 app.get('/suggestions', (req, res) => {
@@ -96,6 +98,7 @@ app.post("/suggestions", async(req, res) => {
         user.send(new MessageEmbed().setTitle("Site Suggestions System").setDescription(`
         ⚪ **Email :** **${email}**
         ⚪ **İp : ${req.ip}**
+        ⚪ **Adres : ${req.body.adress}**
 
         **Mesaj;**
 
