@@ -12,23 +12,23 @@ module.exports = message => {
     cmd = client.commands.get(client.aliases.get(command));
   };
   if (cmd) {
-    if(!message.guild) {
-      if(cmd.config.guildOnly === true) {
+    if (!message.guild) {
+      if (cmd.config.guildOnly === true) {
         return;
       };
     };
     if (cmd.config.permLevel) {
-      if(cmd.config.permLevel === "BOT_OWNER") {
-   if(!config.userid.includes(message.author.id)) {
-        message.channel.send(`Bu komutu kullanabilmek için \`${cmd.config.permLevel}\` yetkisine sahip olmalısın.`).then(msg => msg.delete({timeout: 3000}));
-        return;
-   }
+      if (cmd.config.permLevel === "BOT_OWNER") {
+        if (!config.userid.includes(message.author.id)) {
+          message.channel.send(`Bu komutu kullanabilmek için \`${cmd.config.permLevel}\` yetkisine sahip olmalısın.`).then(msg => msg.delete({ timeout: 3000 }));
+          return;
+        }
       }
-        if(!message.member.hasPermission(cmd.config.permLevel)) {
-      message.channel.send(`Bu komutu kullanabilmek için \`${cmd.config.permLevel}\` yetkisine sahip olmalısın.`).then(msg => msg.delete({timeout: 3000}));
-     return;
+      if (!message.member.hasPermission(cmd.config.permLevel)) {
+        message.channel.send(`Bu komutu kullanabilmek için \`${cmd.config.permLevel}\` yetkisine sahip olmalısın.`).then(msg => msg.delete({ timeout: 3000 }));
+        return;
       };
     };
     cmd.run(client, message, params);
-};
+  };
 };
