@@ -1,6 +1,5 @@
 const Discord = require("discord.js"),
 client = new Discord.Client();
-const functions = require("../util/functions.js");
 
 module.exports.run = async (client, message, args) => {
     const totalSeconds = client.uptime / 1000;
@@ -9,7 +8,6 @@ module.exports.run = async (client, message, args) => {
     const minutes = Math.floor(totalSeconds / 60) % 60;
     const seconds = Math.floor(totalSeconds % 60);
 
-    const cpu = await getCpuUsage();
     const memory = await getMemoryUsage();
 
     const embed = new Discord.MessageEmbed()
@@ -20,7 +18,7 @@ module.exports.run = async (client, message, args) => {
       .addField('Toplam Kanal Sayısı', `${client.channels.cache.size}`, true)
       .addField('Ping', `${client.ws.ping} ms`, true)
       .addField('Bellek Kullanımı', `${memory}`, true)
-      .addField('CPU Kullanımı', `${cpu.toFixed(2)}%`, true)
+      .addField('CPU Kullanımı', `${(process.cpuUsage().system / 1024 / 1024).toFixed(2)}%`, true)
       .addField('Komut Sayısı', `${client.commands.size}`, true)
       .addField('Ping Tarihi', `${new Date(client.readyTimestamp).toLocaleString()}`, true)
       .addField('Node.js Sürümü', `${process.version}`, true)
@@ -29,30 +27,21 @@ module.exports.run = async (client, message, args) => {
       .setColor('#0099ff')
       .setTimestamp();
     message.channel.send(embed);
-
-    function getCpuUsage() {
-        return new Promise((resolve) => {
-          const startUsage = process.cpuUsage();
-          setTimeout(() => {
-            const endUsage = process.cpuUsage();
-            const totalUsage = (endUsage.user - startUsage.user) + (endUsage.system - startUsage.system);
-            const totalCpu = totalUsage / 1000000;
-            resolve(totalCpu);
-          }, 100);
-        });
-      }
       
       function getMemoryUsage() {
         const used = process.memoryUsage().heapUsed / 1024 / 1024;
-        const total = process.memoryUsage().heapTotal / 1024 / 1024;
-        const percent = ((used / total) * 100).toFixed(2);
-        return `${used.toFixed(2)} MB / ${total.toFixed(2)} MB (${percent}%)`;
+        const forcalculate = process.memoryUsage().heapUsed / 1024 / 1024 / 1024;
+        const total = 134217728 / 1024 / 1024;
+        const percent = ((forcalculate / total) * 100).toFixed(2);
+        return `${used.toFixed(2)} MB / ${total.toFixed(2)} GB (${percent}%)`;
       
       };
   };
 
 exports.config = {
   name: "istatistik",
+  description: "Botun istatistiklerini gösterir.",
+  usage: "",
   guildOnly: true,
-  aliases: [],
+  aliases: ["i"],
 };

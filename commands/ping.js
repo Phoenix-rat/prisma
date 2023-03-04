@@ -7,6 +7,8 @@ message.channel.send(`Pong! ${client.ws.ping}ms`)
 
 exports.config = {
   name: "ping",
+  description: "Ping Komudu",
+  usage: "",
   guildOnly: true,
   aliases: [],
 };
