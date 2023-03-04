@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
     console.log(commandFiles); // Konsola dosyaların bulunduğu klasörü yazdır
     //for (const file of commandFiles) {
     //    const command = (`${file}`);
-    //    client.commands.set(command.exports.config.usage, command);
+    //   client.commands.set(command.exports.config.usage, command);
     //}
 
     if (!args.length) {
