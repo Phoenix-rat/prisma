@@ -1,5 +1,6 @@
 {
     "token": "discord bot token",
     "userid": "Discord User ID",
-    "port": "Select Port"
+    "port": "Select Port",
+    "prefix": "bot prefix"
 }
