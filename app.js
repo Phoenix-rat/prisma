@@ -122,6 +122,31 @@ app.post("/suggestions", async(req, res) => {
     };
     res.redirect("/");
 });
+
+const { inspect } = require("util");
+
+client.on("message", async (message) => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(config.prefix)) return;
+
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+
+  if (command === "eval") {
+    if (message.author.id !== config.userid) return;
+    try {
+      const code = args.join(" ");
+      let evaled = eval(code);
+
+      if (typeof evaled !== "string")
+        evaled = inspect(evaled, { depth: 0 });
+
+      message.channel.send(`\`\`\`js\n${evaled}\n\`\`\``);
+    } catch (err) {
+      message.channel.send(`\`ERROR\` \`\`\`xl\n${err}\n\`\`\``);
+    }
+  }
+});
 app.use((req, res) => { return res.redirect("/"); });
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
