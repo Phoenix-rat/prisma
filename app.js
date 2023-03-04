@@ -2,12 +2,32 @@ const express = require('express');
 const { engine } = require('express-handlebars');
 const app = express()
 const { urlencoded, json } = require("body-parser");
-const { Client, MessageEmbed } = require("discord.js");
+const { Client, MessageEmbed, Collection} = require("discord.js");
 const client = new Client({ fetchAllMembers: true });
 const moment = require("moment");
 const config = require("./config.json");
-const port = config.port
+const fs = require("fs");
+const path = require("path");
+const { readdirSync } = require("fs");
+const { join } = require("path");
 
+const port = config.port
+require('./util/Loader.js')(client);
+
+client.commands = new Collection();
+client.aliases = new Collection();  
+fs.readdir('./commands/', (err, files) => { 
+  if (err) console.error(err);              
+  console.log(`${files.length} komut yüklenecek.`); 
+  files.forEach(f => {                       
+    let props = require(`./commands/${f}`);   
+    console.log(`${props.config.name} komutu yüklendi.`);   
+    client.commands.set(props.config.name, props); 
+    props.config.aliases.forEach(alias => {          
+      client.aliases.set(alias, props.config.name);  
+    });
+  });
+})
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
