@@ -1,8 +1,8 @@
 const Discord = require("discord.js"),
-client = new Discord.Client();
+  client = new Discord.Client();
 
 module.exports.run = async (client, message, args) => {
-message.channel.send(`Pong! ${client.ws.ping}ms`)
+  message.channel.send(`Pong! ${client.ws.ping}ms`)
 };
 
 exports.config = {
