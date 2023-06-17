@@ -2,5 +2,6 @@
     "token": "discord bot token",
     "userid": "Discord User ID",
     "port": "Select Port",
-    "prefix": "bot prefix"
+    "prefix": "bot prefix",
+    "bardapi": "Your BARD SESSION TOKEN"
 }

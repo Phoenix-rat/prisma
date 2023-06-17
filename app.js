@@ -45,9 +45,9 @@ app.get('/faq', (req, res) => {
     title: 'FAQ'
   });
 });
-app.get('/features', (req, res) => {
-  res.render('features', {
-    title: 'Features'
+app.get('/whoweare', (req, res) => {
+  res.render('whoweare', {
+    title: 'Who We Are'
   });
 });
 
